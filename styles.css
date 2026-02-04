@@ -32,20 +32,18 @@ div p{
   -ms-user-select: none;
   user-select: none;
   pointer-events: none;
-  /* None of ur business b*tches. */
 }
 
 .bottom-credit {
-    position: fixed;
-      bottom: 8px;
-        left: 0;
-          right: 0;
-            text-align: center;
-              color: #666666;           /* darker gray */
-                font-size: 12px;
-                  opacity: 0.5;             /* very subtle */
-                    letter-spacing: 0.4px;
-                      pointer-events: none;
-                        z-index: 5;
-                        }
+  position: fixed;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #666666;           /* darker gray */
+  font-size: 12px;
+  opacity: 0.5;             /* very subtle */
+  letter-spacing: 0.4px;
+  pointer-events: none;
+  z-index: 5;
 }
