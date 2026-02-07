@@ -26,7 +26,8 @@ body {
 /* CENTER TEXT */
 .center-quote {
     font-family: "Cinzel Decorative", serif;
-    font-size: 3.5rem;
+    font-weight: 400;
+    font-style: normal;
     color: #e8d7c3;
     text-align: center;
     max-width: 900px;
