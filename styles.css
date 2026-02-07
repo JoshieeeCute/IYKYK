@@ -1,10 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
-}
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+
 html{
   height: 100%;
   width: 100%;
@@ -48,7 +44,7 @@ div .j{
 }
 
 .p {
-  font-family: "Playwrite CU Guides", cursive;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 400;
+    font-style: normal;
 }
