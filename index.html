@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joshua Aldea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  :root{
+    --bg:#f8f6ef;
+    --bg-soft:#efeadd;
+    --ink:#17140f;
+    --ink-dim:#68624f;
+    --rule: rgba(23,20,15,0.13);
+    --accent:#a8582c;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.7;
+    font-size:16px;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{ max-width:760px; margin:0 auto; padding:0 32px; }
+
+  .kicker{
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--ink-dim);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(248,246,239,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-row{
+    max-width:760px; margin:0 auto; padding:20px 32px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .brand{
+    font-family:'Bebas Neue', sans-serif;
+    font-weight:500;
+    font-size:15px;
+    letter-spacing:0.01em;
+  }
+  .nav-links{
+    display:flex; gap:28px;
+  }
+  .nav-links a{
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-dim);
+    position:relative;
+    padding-bottom:3px;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute; left:0; bottom:0;
+    width:0; height:1px;
+    background:var(--accent);
+    transition:width 0.25s ease;
+  }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-links a:hover::after{ width:100%; }
+
+  .brand{
+    transition:opacity 0.2s ease;
+  }
+  .brand:hover{ opacity:0.65; }
+
+  .ig-link{
+    color:var(--ink);
+    display:flex; align-items:center;
+    transition:opacity 0.2s ease;
+  }
+  .ig-link i{ font-size:18px; }
+  .ig-link:hover{ opacity:0.6; }
+
+  /* ---------- FADE (SIMPLE, NO BOUNCE) ---------- */
+  .fade{
+    opacity:0;
+    transform:translateY(10px);
+    transition:opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .fade.visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:110px 0 84px; }
+  .hero .kicker{ margin-bottom:22px; }
+
+  h1{
+    font-family:'Bebas Neue', sans-serif;
+    font-weight:500;
+    font-size:clamp(34px, 6vw, 58px);
+    line-height:1.14;
+    letter-spacing:-0.01em;
+    max-width:14ch;
+  }
+
+  .hero p{
+    margin-top:24px;
+    max-width:48ch;
+    color:var(--ink-dim);
+    font-size:16px;
+  }
+
+  .cta-row{
+    display:flex; flex-wrap:wrap; gap:36px;
+    margin-top:38px;
+  }
+  .cta-link{
+    font-size:14px;
+    letter-spacing:0.02em;
+    padding-bottom:5px;
+    border-bottom:1px solid var(--rule);
+    transition:border-color 0.2s ease, color 0.2s ease, padding-right 0.2s ease;
+  }
+  .cta-link .arrow{ margin-left:6px; display:inline-block; transition:transform 0.2s ease; }
+  .cta-link:hover{ border-color:var(--accent); color:var(--accent); }
+  .cta-link:hover .arrow{ transform:translateX(3px); }
+
+  /* ---------- STORY SECTIONS ---------- */
+  .chapters{ padding:10px 0 10px; }
+
+  .chapter{
+    padding:56px 0;
+    border-top:1px solid var(--rule);
+  }
+
+  .chapter-head{
+    display:flex; align-items:baseline; gap:14px;
+    margin-bottom:20px;
+  }
+  .chapter-num{
+    font-family:'Bebas Neue', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--accent);
+  }
+  .chapter h2{
+    font-family:'Bebas Neue', sans-serif;
+    font-weight:500;
+    font-size:24px;
+  }
+
+  .chapter p{
+    max-width:60ch;
+    color:#3c372c;
+    margin-bottom:15px;
+  }
+  .chapter p:last-child{ margin-bottom:0; }
+
+  .chapter .loud{
+    font-family:'Bebas Neue', sans-serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:19px;
+    color:var(--ink);
+    margin:20px 0;
+    padding-left:18px;
+    border-left:2px solid var(--accent);
+  }
+
+  /* ---------- WHY SALES ---------- */
+  .pull{
+    padding:70px 0;
+    background:var(--bg-soft);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+  }
+  .pull .chapter-head{ margin-bottom:24px; }
+  .pull blockquote{
+    font-family:'Bebas Neue', sans-serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(22px, 3.4vw, 32px);
+    line-height:1.35;
+    max-width:18ch;
+    margin-bottom:34px;
+  }
+
+  .skill-list{ margin-bottom:30px; }
+  .skill-row{
+    display:flex; align-items:baseline; gap:18px;
+    padding:9px 0;
+  }
+  .skill-row .n{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:14px;
+    color:var(--accent);
+    width:22px;
+  }
+  .skill-row .t{ font-size:16px; }
+
+  .pull p.fine{ max-width:56ch; color:var(--ink-dim); }
+
+  /* ---------- CONNECT ---------- */
+  .connect{ padding:70px 0 20px; }
+  .connect .chapter-head{ margin-bottom:20px; }
+  .connect h2{
+    font-family:'Bebas Neue', sans-serif;
+    font-weight:500;
+    font-size:clamp(24px, 4vw, 32px);
+    max-width:30ch;
+    margin-bottom:20px;
+  }
+  .connect p{
+    max-width:52ch;
+    color:#3c372c;
+    margin-bottom:14px;
+  }
+  .connect p:last-of-type{ margin-bottom:44px; }
+
+  .contact-list{ border-top:1px solid var(--rule); }
+  .contact-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 0;
+    border-bottom:1px solid var(--rule);
+    transition:padding-left 0.25s ease;
+  }
+  .contact-row:hover{ padding-left:8px; }
+  .contact-row .left{
+    display:flex; align-items:center; gap:16px;
+  }
+  .contact-row .icon{
+    width:20px; height:20px;
+    color:var(--ink);
+    flex:none;
+  }
+  .contact-row i.icon{
+    width:20px;
+    font-size:19px;
+    line-height:1;
+    text-align:center;
+    height:auto;
+  }
+  .contact-row .label{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:19px;
+  }
+  .contact-row .sub{
+    font-size:13px;
+    color:var(--ink-dim);
+  }
+  .contact-row .arrow{
+    font-size:18px;
+    color:var(--accent);
+    transition:transform 0.25s ease;
+  }
+  .contact-row:hover .arrow{ transform:translateX(4px); }
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    padding:90px 0;
+    background:var(--bg-soft);
+    text-align:center;
+  }
+  .closing-line{
+    font-family:'Bebas Neue', sans-serif;
+    font-weight:500;
+    font-size:19px;
+    line-height:1.5;
+    color:var(--ink-dim);
+    max-width:36ch;
+    margin:0 auto 20px;
+  }
+  .closing-big{
+    font-size:clamp(26px, 4vw, 36px);
+    font-style:italic;
+    color:var(--ink);
+    max-width:22ch;
+    margin:0 auto;
+  }
+
+  footer{
+    padding:26px 0;
+    text-align:center;
+    font-size:12px;
+    color:var(--ink-dim);
+    border-top:1px solid var(--rule);
+  }
+
+  @media (max-width:600px){
+    .wrap{ padding:0 22px; }
+    .nav-row{ padding:18px 22px; }
+    .nav-links{ gap:16px; }
+    .cta-row{ gap:20px; }
+    .contact-row .sub{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .fade{ opacity:1; transform:none; transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-row">
+    <a class="brand" href="#top">Josh Aldea</a>
+    <a class="ig-link" href="https://www.instagram.com/josh._.aldea" target="_blank" rel="noopener" aria-label="Josh on Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+  <section class="hero">
+    <div class="kicker fade">Unfiltered. Unqualified. Undeniable.</div>
+    <h1 class="fade">Why bother settling for mediocrity?</h1>
+    <p class="fade">I'm Josh. 21 years old. A serial risk-taker. High school dropout. Ran away from home. Slept by the roadside.</p>
+    <div class="cta-row fade">
+      <a class="cta-link" href="#story">Read my story <span class="arrow">→</span></a>
+      <a class="cta-link" href="#connect">Connect with me <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <section class="chapters" id="story">
+
+    <div class="chapter fade">
+      <div class="chapter-head">
+        <span class="chapter-num">01</span>
+        <h2>Awakening</h2>
+      </div>
+      <p>I live in a country where people firmly believe that school education is the key to success. As a clueless kid, I innocently followed the path people laid out in front of me.</p>
+      <p>Not until I turned 17. I recognized a pattern in the lives of people who'd gone through the same system that the majority of people propagate as the only way to success. Looking at these graduates and now-working people, seemingly unhappy, I didn't want to have their lives. I didn't want the destination they'd ended up in from taking the same traditional path that the society has demanded of them.</p>
+      <p class="loud">LIVING THE LIFE THAT'S ALREADY BEEN LIVED IS MEANINGLESS.</p>
+      <p>Go to school. Get a job. Work 40/50 years. Retire. Die.</p>
+      <p>I don't know about you, but that for me didn't sound like a life. That's like more of a template. And templates are for people who are cowards to write their own story.</p>
+    </div>
+
+    <div class="chapter fade">
+      <div class="chapter-head">
+        <span class="chapter-num">02</span>
+        <h2>Denial</h2>
+      </div>
+      <p>At 17 I was deliberately looking for ways to make money online. Social Media Marketing Agency (SMMA) was a hype back then. I joined a community of people running SMMA. I met an owner of SMMA called Creaet and proposed me a role in his company as a Head of Operations. I accepted it.</p>
+      <p>Since I was still at school, while having an involvement in a startup, I could barely fulfill my role in the company. So I have two options and only one I could take—whether to pursue schooling.. or enter the business world.</p>
+      <p>I chose the latter since we only have one life. I mean, why the heck bother settling for mediocrity?</p>
+      <p>I wanted to build my own business by studying the workflows and systems of the business that I'm getting into. So I dropped out of school and started the business venture.</p>
+    </div>
+
+    <div class="chapter fade">
+      <div class="chapter-head">
+        <span class="chapter-num">03</span>
+        <h2>Ran away</h2>
+      </div>
+      <p>At 18, my family couldn't understand why I spent all day in front of a screen. Well, from their perspective, I was just "chilling" at home.</p>
+      <p>What they didn't see was that I was leading meetings, interviewing and hiring candidates, helping develop strategic business plans, and managing operations for a startup SMMA. The role was commission-based, not salaried, so although I was gaining valuable experience, I wasn't earning an income yet.</p>
+      <p>Because I wasn't bringing any money, my family believed I wasn't contributing anything of a value. They eventually insisted that I get a traditional job so I could at least be fucking "useful" to the household.</p>
+      <p>I don't blame my family as this poor mindset is common in many Filipino families. That if you don't have a college degree, the expectation is that you'll spend the rest of your life working low-paying & physically demanding jobs.</p>
+      <p>So my dad sent me to my uncle who's an architect and a contractor to be one of his construction workers, and all of my hard-earned money goes to my dad's pocket. I would wake up 5am, and work from 7am up until 5pm on construction. And 6pm to 2am as a Head of Operations.</p>
+      <p>Fast forward, I can no longer fulfill my role in startup due to my body's need of early rest from heavy work at construction. I haven't earned a penny in that startup because we had zero clients. And just late April 2027 I deviated away from my family completely to live by myself.</p>
+    </div>
+
+    <div class="chapter fade">
+      <div class="chapter-head">
+        <span class="chapter-num">04</span>
+        <h2>Building from ground up</h2>
+      </div>
+      <p>The first three days from running away from home was an unimaginably difficult experience.</p>
+      <p>I slept on floors, by the roadside, and at the park bench.</p>
+      <p>I tried applying for local jobs related to sales and communication roles such as front desk receptionist, salesman in mall, customer service representative. Only to end up having each of my applications rejected, simply because i didn't have a school diploma/degree.</p>
+      <p>This Philippine job fucking market will humble you fast if you don't play by their rules.</p>
+      <p>So as a last resort, again, I was forced to take on a job that has the lowest barrier of entry, yet most physically laborious ~ construction worker. Luckily, workers can stay in a container van barracks which currently is serving as my temporary shelter.</p>
+      <p>Now I work 6 days a week, 7am-6pm, earning $10/day leaving me by the weekend payday with only enough money to pay for the borrowed food that I ate for that entire week.</p>
+      <p>I cannot afford staying here for long so at night after every shift I'm allocating my time to acquire a skillset that I know will pay for a lifetime: sales.</p>
+    </div>
+
+  </section>
+
+</main>
+
+  <section class="pull fade" id="why-sales">
+    <div class="wrap">
+      <div class="chapter-head">
+        <span class="chapter-num">05</span>
+        <h2>Why sales?</h2>
+      </div>
+      <blockquote>Sales compounds into everything.</blockquote>
+
+      <div class="skill-list">
+        <div class="skill-row"><span class="n">01</span><span class="t">Communication</span></div>
+        <div class="skill-row"><span class="n">02</span><span class="t">Influence</span></div>
+        <div class="skill-row"><span class="n">03</span><span class="t">Persuasion</span></div>
+        <div class="skill-row"><span class="n">04</span><span class="t">Handling rejection</span></div>
+        <div class="skill-row"><span class="n">05</span><span class="t">Moving people to action</span></div>
+      </div>
+
+      <p class="fine">Every single individual who has ever built something great sold something first. Be it an idea, a vision, or even themselves.</p>
+    </div>
+  </section>
+
+<main class="wrap">
+  <section class="connect" id="connect">
+    <div class="chapter-head fade">
+      <span class="chapter-num">06</span>
+      <h2 style="font-size:15px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim);">Connect</h2>
+    </div>
+    <h2 class="fade">I personally designed this website to connect with a selected group of people who resonate with me.</h2>
+    <p class="fade">I don't connect with people who are solely ambitious. Ambition alone is common. And everyone has a version of a dream.</p>
+    <p class="fade">What's rarer is the discipline to show up for that dream every day whether you feel like it or not — to practice, build, write, create, or refine, even when no one's watching and no one's asked.</p>
+    <p class="fade">So if you're someone who's already in the arena, testing ideas, making things happen, failing forward, and getting better, then this space is for you.</p>
+    <p class="fade">I'd rather connect with six people who are quietly doing the work than a thousand who are only planning to start.</p>
+    <p class="fade">If that sounds like you, I'd love to know what you're building.</p>
+
+    <div class="contact-list fade">
+      <a class="contact-row" href="mailto:josh.aldea@outlook.com">
+        <div class="left">
+          <i class="fa-regular fa-envelope icon"></i>
+          <div>
+            <div class="label">Email</div>
+            <div class="sub">josh.aldea@outlook.com</div>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="contact-row" href="https://discord.com/users/1493905589867118703" target="_blank" rel="noopener">
+        <div class="left">
+          <i class="fa-brands fa-discord icon"></i>
+          <div>
+            <div class="label">Discord</div>
+            <div class="sub">Message me directly</div>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="contact-row" href="https://www.instagram.com/josh._.aldea" target="_blank" rel="noopener">
+        <div class="left">
+          <i class="fa-brands fa-instagram icon"></i>
+          <div>
+            <div class="label">Instagram</div>
+            <div class="sub">@josh._.aldea</div>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="contact-row" href="https://www.x.com/MrJoshieee" target="_blank" rel="noopener">
+        <div class="left">
+          <i class="fa-brands fa-x-twitter icon"></i>
+          <div>
+            <div class="label">X</div>
+            <div class="sub">@MrJoshieee</div>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<section class="closing fade">
+  <div class="wrap">
+    <p class="closing-line">You only get to live once.<br>You can decide to live your life to its fullest.</p>
+    <p class="closing-line closing-big">Live a phenomenal life:)</p>
+  </div>
+</section>
+
+<footer>
+  Joshua Aldea · © <span id="year"></span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.12 });
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
